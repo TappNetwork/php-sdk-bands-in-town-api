@@ -1,0 +1,54 @@
+{
+    "name": "tapp/php-sdk-bands-in-town-api",
+    "description": "PHP SDK for Bands In Town API",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "tapp network",
+        "bands in town",
+        "api",
+        "sdk"
+    ],
+    "homepage": "https://github.com/TappNetwork/php-sdk-bands-in-town-api",
+    "authors": [
+        {
+            "name": "Tapp Network",
+            "email": "steve@tappnetwork.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "sammyjo20/saloon": "^2.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.13",
+        "laravel/pint": "^1.4",
+        "pestphp/pest": "^1.22",
+        "symfony/var-dumper": "^6.2"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "BandsInTownApi\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BandsInTownApi\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "fix-code": [
+            "./vendor/bin/php-cs-fixer fix --allow-risky=yes"
+        ],
+        "test": [
+            "./vendor/bin/pest"
+        ]
+    }
+}
