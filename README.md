@@ -135,6 +135,272 @@ $bandsInTownApi->api('search')
 $bandsInTownApi->withHeaderAuth('your-api-key');
 ```
 
+### Available methods
+
+Array of entities to search
+```php
+->entities([
+    [
+        'type' => 'artist',
+        'order' => 'trackers',
+        'limit' => 2,
+        'offset' => 0,
+    ],
+])
+```
+
+Term to search
+```php
+->term('Bell')
+```
+
+Type to search. Possible values: 'streaming', 'physical', 'both' (default)
+```php
+->type('streaming')
+```
+
+Genre to search. Possible values: see https://artists.bandsintown.com/support/partner-search-api/#query_string_parameters
+```php
+->genre('pop')
+```
+
+Genres to search. Possible values: see https://artists.bandsintown.com/support/partner-search-api/#query_string_parameters
+```php
+->genres([
+    'pop', 
+    'jazz'
+])
+```
+
+Restrict search to the provided scopes of entity for a given term. Possible values: 'artist', 'event', 'venue', 'event_id'
+```php
+->scopes([
+    'artist',
+])
+```
+
+Limit search to a provided region. Not applicable for artist
+```php
+->region([
+    'latitude' => 45.496112,
+    'longitude' => -73.569315,
+])
+```
+
+Filter search. Possible values: 'on tour' (for artist search)
+```php
+->filter('on tour')
+```
+
+Send the request
+```php
+->send()
+```
+
+Examples:
+
+#### Single entity with pagination (search by artist with pagination)
+
+```php
+$artist = $bandsInTownApi->api('search')
+    ->entities([
+        'type' => 'artist',
+        'order' => 'trackers',
+        'limit' => 2,
+        'offset' => 0,
+    ])
+    ->term('Lady')
+    ->scopes([
+        'artist'
+    ])
+    ->send();
+```
+
+#### Retrieve multiple entities (search by artist and events with pagination)
+
+```php
+$artistAndEvent = $bandsInTownApi->api('search')
+    ->entities([
+        [
+            'type' => 'artist',
+            'order' => 'trackers',
+            'limit' => 2,
+            'offset' => 0,
+        ],
+        [
+            'type' => 'event',
+            'order' => 'rsvps',
+            'limit' => 4,
+        ]
+    ])
+    ->term('Lady')
+    ->scopes([
+        'artist',
+        'event',
+    ])
+    ->send();
+```
+
+####  Retrieve a specific event
+
+```php
+$event = $bandsInTownApi->api('search')
+    ->entities([
+        [
+            'type' => 'event',
+        ]
+    ])
+    ->term('102617588')
+    ->scopes([
+        'event_id',
+    ])
+    ->send();
+```
+
+####  Search events by artist id
+
+```php
+$event = $bandsInTownApi->api('search')
+    ->entities([
+        [
+            'type' => 'event',
+            'order' => 'rsvps',
+            'limit' => 4,
+        ],
+    ])
+    ->term('22741')
+    ->scopes([
+        'artist_id',
+    ])
+    ->send();
+```
+
+
+####  Search venues by name or by id
+
+```php
+// search by venue name
+$venue = $bandsInTownApi->api('search')
+    ->entities([
+        [
+            'type' => 'venue',
+        ],
+    ])
+    ->term('Bell Centre')
+    ->scopes([
+        'venue',
+    ])
+    ->send();
+```
+
+```php
+// search by venue id
+$venue = $bandsInTownApi->api('search')
+    ->entities([
+        [
+            'type' => 'venue',
+        ],
+    ])
+    ->term('10003087')
+    ->scopes([
+        'venue_id',
+    ])
+    ->send();
+```
+
+#### Search events by venue id
+
+```php
+$events = $bandsInTownApi->api('search')
+    ->entities([
+        [
+            'type' => 'event',
+        ],
+    ])
+    ->term('10003087')
+    ->scopes([
+        'venue_id'
+    ])
+    ->send();
+```
+
+#### Search events and artists who played in a specific venue by venue id and genre
+
+```php
+$events = $bandsInTownApi->api('search')
+    ->entities([
+        [
+            'type' => 'event',
+        ],
+    ])
+    ->term('10003087')
+    ->genre('pop')
+    ->send();
+```
+
+#### Search events by GPS coordinates and genre
+
+```php
+$events = $bandsInTownApi->api('search')
+    ->entities([
+        [
+            'type' => 'event',
+        ],
+    ])
+    ->region([
+        'latitude' => 45.496112,
+        'longitude' => -73.569315,
+    ])
+    ->genre('pop')
+    ->send();
+```
+
+#### Search live streaming events
+
+```php
+$events = $bandsInTownApi->api('search')
+    ->entities([
+        [
+            'type' => 'event',
+        ],
+    ])
+    ->term('jason wild')
+    ->type('streaming')
+    ->send();
+```
+
+#### Search live streaming events by genre
+
+```php
+$events = $bandsInTownApi->api('search')
+    ->entities([
+        [
+            'type' => 'event',
+        ],
+    ])
+    ->genre('latin')
+    ->type('streaming')
+    ->send();
+```
+
+#### Search physical events, last modified in a period of time, ordered by start date
+
+```php
+$events = $bandsInTownApi->api('search')
+    ->entities([
+        [
+            'type' => 'event',
+            'order' => 'start_date',
+            'limit' => 199,
+            'offset' => 0,
+        ],
+    ])
+    ->term('2021-08-20T00:00:00ZTO2021-08-23T00:00:00Z')
+    ->scopes(['last_modified_date'])
+    ->type('physical')
+    ->send();
+```
+
 ## Testing
 
 ```bash
