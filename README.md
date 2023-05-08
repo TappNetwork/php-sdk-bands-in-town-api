@@ -57,7 +57,6 @@ $bandsInTownApi->api('public')->artistInfoById('artist id');
 E.g.:
 ```php
 $artistInfoById = $bandsInTownApi->api('public')->artistInfoById('307871');
-$artistInfoById->body();
 ```
 
 #### Artist Info By Facebook Page Id
@@ -69,7 +68,6 @@ $bandsInTownApi->api('public')->artistInfoByFacebookPageId('facebook page id');
 E.g.:
 ```php
 $artistInfoById = $bandsInTownApi->api('public')->artistInfoByFacebookPageId('67253243887');
-$artistInfoById->body();
 ```
 
 #### Artist Upcoming Events
@@ -187,7 +185,15 @@ Limit search to a provided region. Not applicable for artist
 ])
 ```
 
-Filter search. Possible values: 'on tour' (for artist search)
+Limit search to a range of dates. Only for event search
+```php
+->period([
+    'starts_at' => '2021-08-20T00:00:00Z',
+    'ends_at' => '2021-08-23T00:00:00Z',
+])
+```
+
+Filter search. Possible values: 'on tour' (for artist search), "recommended", "tracked artist" (when user object is provided)
 ```php
 ->filter('on tour')
 ```
