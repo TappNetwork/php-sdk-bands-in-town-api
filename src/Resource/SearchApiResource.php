@@ -24,6 +24,12 @@ class SearchApiResource extends Resource
 
     public ?array $region = null;
 
+    public ?array $user = null;
+
+    public ?array $period = null;
+
+    public ?string $tag = null;
+
     public function entities(array $entities)
     {
         $this->entities = $entities;
@@ -80,6 +86,27 @@ class SearchApiResource extends Resource
         return $this;
     }
 
+    public function user(array $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function period(array $period)
+    {
+        $this->period = $period;
+
+        return $this;
+    }
+
+    public function tag(string $tag)
+    {
+        $this->tag = $tag;
+
+        return $this;
+    }
+
     public function send()
     {
         $query = $this->getQuery();
@@ -123,6 +150,18 @@ class SearchApiResource extends Resource
 
         if ($this->region !== null) {
             $query = Arr::add($query, 'region', $this->region);
+        }
+
+        if ($this->user !== null) {
+            $query = Arr::add($query, 'user', $this->user);
+        }
+
+        if ($this->period !== null) {
+            $query = Arr::add($query, 'period', $this->period);
+        }
+
+        if ($this->tag !== null) {
+            $query = Arr::add($query, 'tag', $this->tag);
         }
 
         return $query;
