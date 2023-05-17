@@ -7,7 +7,7 @@ Provides a PHP wrapper for Bands In Town [public](https://artists.bandsintown.co
 Installing via Composer:
 
 ```bash
-composer require andreia/php-sdk-bands-in-town-api
+composer require tapp/php-sdk-bands-in-town-api
 ```
 
 ## Usage
