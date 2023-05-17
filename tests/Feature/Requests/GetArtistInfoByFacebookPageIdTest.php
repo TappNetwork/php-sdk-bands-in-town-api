@@ -8,7 +8,7 @@ use BandsInTownApi\Responses\BandsInTownResponse;
 use Saloon\Contracts\Request;
 use Saloon\Contracts\Response;
 
-test('can retrieve artist info by id', function () {
+test('can retrieve artist info by facebook id', function () {
     $mockClient = mockClient();
     $bandsInTownApi = new BandsInTownApi;
     $bandsInTownApi->withQueryAuth('app_id', 'my-app-id');
