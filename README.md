@@ -210,10 +210,12 @@ Examples:
 ```php
 $artist = $bandsInTownApi->api('search')
     ->entities([
-        'type' => 'artist',
-        'order' => 'trackers',
-        'limit' => 2,
-        'offset' => 0,
+        [
+            'type' => 'artist',
+            'order' => 'trackers',
+            'limit' => 2,
+            'offset' => 0,
+        ],
     ])
     ->term('Lady')
     ->scopes([
