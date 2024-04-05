@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BandsInTownApi\Requests\PublicApi;
 
+use BandsInTownApi\Responses\BandsInTownResponse;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 
@@ -11,14 +12,13 @@ class GetArtistInfoByName extends Request
 {
     /**
      * HTTP Method
-     *
-     * @var Method
      */
     protected Method $method = Method::GET;
 
     public function __construct(
         protected string $artistName,
-    ){}
+    ) {
+    }
 
     /**
      * Get Artist Info By Name
@@ -27,11 +27,14 @@ class GetArtistInfoByName extends Request
      * the current number of trackers, and more.
      *
      * @see https://artists.bandsintown.com/support/public-api
-     *
-     * @return string
      */
     public function resolveEndpoint(): string
     {
         return "/artists/{$this->artistName}";
+    }
+
+    public function resolveResponseClass(): string
+    {
+        return BandsInTownResponse::class;
     }
 }

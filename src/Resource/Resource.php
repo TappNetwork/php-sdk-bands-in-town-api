@@ -2,7 +2,7 @@
 
 namespace BandsInTownApi\Resource;
 
-use Saloon\Contracts\Connector;
+use Saloon\Http\Connector;
 
 class Resource
 {

@@ -1,0 +1,36 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method BandsInTownApi\\\\Resource\\\\PublicApiResource\\:\\:artistAllEvents\\(\\) should return BandsInTownApi\\\\Responses\\\\BandsInTownResponse but returns Saloon\\\\Http\\\\Response\\.$#"
+			count: 1
+			path: src/Resource/PublicApiResource.php
+
+		-
+			message: "#^Method BandsInTownApi\\\\Resource\\\\PublicApiResource\\:\\:artistEventsByDateRange\\(\\) should return BandsInTownApi\\\\Responses\\\\BandsInTownResponse but returns Saloon\\\\Http\\\\Response\\.$#"
+			count: 1
+			path: src/Resource/PublicApiResource.php
+
+		-
+			message: "#^Method BandsInTownApi\\\\Resource\\\\PublicApiResource\\:\\:artistInfoByFacebookPageId\\(\\) should return BandsInTownApi\\\\Responses\\\\BandsInTownResponse but returns Saloon\\\\Http\\\\Response\\.$#"
+			count: 1
+			path: src/Resource/PublicApiResource.php
+
+		-
+			message: "#^Method BandsInTownApi\\\\Resource\\\\PublicApiResource\\:\\:artistInfoById\\(\\) should return BandsInTownApi\\\\Responses\\\\BandsInTownResponse but returns Saloon\\\\Http\\\\Response\\.$#"
+			count: 1
+			path: src/Resource/PublicApiResource.php
+
+		-
+			message: "#^Method BandsInTownApi\\\\Resource\\\\PublicApiResource\\:\\:artistInfoByName\\(\\) should return BandsInTownApi\\\\Responses\\\\BandsInTownResponse but returns Saloon\\\\Http\\\\Response\\.$#"
+			count: 1
+			path: src/Resource/PublicApiResource.php
+
+		-
+			message: "#^Method BandsInTownApi\\\\Resource\\\\PublicApiResource\\:\\:artistPastEvents\\(\\) should return BandsInTownApi\\\\Responses\\\\BandsInTownResponse but returns Saloon\\\\Http\\\\Response\\.$#"
+			count: 1
+			path: src/Resource/PublicApiResource.php
+
+		-
+			message: "#^Method BandsInTownApi\\\\Resource\\\\PublicApiResource\\:\\:artistUpcomingEvents\\(\\) should return BandsInTownApi\\\\Responses\\\\BandsInTownResponse but returns Saloon\\\\Http\\\\Response\\.$#"
+			count: 1
+			path: src/Resource/PublicApiResource.php
