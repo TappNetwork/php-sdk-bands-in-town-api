@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BandsInTownApi\Requests\SearchApi;
 
+use BandsInTownApi\Responses\BandsInTownResponse;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 
@@ -11,14 +12,13 @@ class CustomSearch extends Request
 {
     /**
      * HTTP Method
-     *
-     * @var Method
      */
     protected Method $method = Method::GET;
 
     public function __construct(
         protected array $data,
-    ){}
+    ) {
+    }
 
     protected function defaultQuery(): array
     {
@@ -31,11 +31,14 @@ class CustomSearch extends Request
      * Search API
      *
      * @see https://artists.bandsintown.com/support/partner-search-api Search API Doc
-     *
-     * @return string
      */
     public function resolveEndpoint(): string
     {
-        return "/search";
+        return '/search';
+    }
+
+    public function resolveResponseClass(): string
+    {
+        return BandsInTownResponse::class;
     }
 }

@@ -27,8 +27,8 @@ declare(strict_types=1);
 */
 
 use Saloon\Http\Faking\MockClient;
-use Saloon\Contracts\PendingRequest;
 use Saloon\Http\Faking\MockResponse;
+use Saloon\Http\PendingRequest;
 
 expect()->extend('toBeOne', function () {
     return $this->toBe(1);

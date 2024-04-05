@@ -5,8 +5,6 @@ declare(strict_types=1);
 use BandsInTownApi\BandsInTownApi;
 use BandsInTownApi\Requests\SearchApi\CustomSearch;
 use BandsInTownApi\Responses\BandsInTownResponse;
-use Saloon\Contracts\Request;
-use Saloon\Contracts\Response;
 
 test('can search physical events by GPS coordinates and genre', function (array $entities, array $region, string $genre, string $type) {
     $mockClient = mockClient();
@@ -22,7 +20,7 @@ test('can search physical events by GPS coordinates and genre', function (array 
         ->type($type)
         ->send();
 
-    $mockClient->assertSent(function (Request $request, Response $response) {
+    $mockClient->assertSent(function (CustomSearch $request, BandsInTownResponse $response) {
         return $request instanceof CustomSearch;
     });
 
