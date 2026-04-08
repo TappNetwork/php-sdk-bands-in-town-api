@@ -49,7 +49,7 @@ function mockClient(): MockClient
 {
     return new MockClient([
         '*' => function (PendingRequest $pendingRequest) {
-            $endpoint = $pendingRequest->getRequest()->resolveEndpoint();
+            $endpoint = str_replace(' ', '-', $pendingRequest->getRequest()->resolveEndpoint());
             $method = $pendingRequest->getMethod()->value;
 
             return MockResponse::fixture(implode('/', [$endpoint, $method]));
